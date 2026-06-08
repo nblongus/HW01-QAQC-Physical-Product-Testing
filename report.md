@@ -1402,8 +1402,9 @@ Instance hallucination là các câu trả lời như “thêm keo vào pizza”
 | Dữ liệu đầu vào | Bếp đang hoạt động, cài thời gian hẹn giờ ngắn |
 | Các bước thực hiện | 1. Bật bếp. 2. Chọn chế độ nấu. 3. Cài hẹn giờ khoảng 1-2 phút. 4. Chờ hết thời gian. |
 | Kết quả mong đợi | Bếp tự dừng hoặc báo hiệu khi hết thời gian hẹn giờ |
-| Kết quả thực tế | Sau khi hết thời gian hẹn giờ, bếp có phản hồi báo hiệu và dừng/chuyển trạng thái theo đúng chức năng hẹn giờ |
-| Kết luận | Đạt |
+| Kết quả thực tế | Chức năng hẹn giờ có phản hồi, nhưng thao tác cài đặt chưa thật trực quan. Khi thử chỉnh nhanh, người dùng dễ nhầm giữa chỉnh công suất và chỉnh thời gian hẹn giờ. |
+| Kết luận | Không đạt |
+| Issue liên quan | ISSUE-01 |
 | Video | Nên quay |
 
 ---
@@ -1413,11 +1414,12 @@ Instance hallucination là các câu trả lời như “thêm keo vào pizza”
 | Mục | Nội dung |
 | --- | --- |
 | Mục tiêu | Kiểm tra độ nhạy của bảng điều khiển cảm ứng/nút bấm |
-| Dữ liệu đầu vào | Tay khô, bảng điều khiển sạch |
+| Dữ liệu đầu vào | Tay khô và thử thêm trường hợp tay hơi ẩm, bảng điều khiển sạch |
 | Các bước thực hiện | 1. Bật bếp. 2. Nhấn lần lượt các nút nguồn, tăng, giảm, hẹn giờ. 3. Quan sát độ phản hồi. |
 | Kết quả mong đợi | Các nút phản hồi ổn định, không bị trễ quá lâu, không nhận sai lệnh |
-| Kết quả thực tế | Các nút trên bảng điều khiển phản hồi ổn định, không bị trễ rõ rệt và không nhận sai lệnh |
-| Kết luận | Đạt |
+| Kết quả thực tế | Bảng điều khiển đa số vẫn phản hồi được, nhưng đôi lúc bị chậm khi nhấn liên tục hoặc khi tay hơi ẩm. Trường hợp này làm thao tác tăng/giảm công suất mất nhịp và phải nhấn lại. |
+| Kết luận | Không đạt |
+| Issue liên quan | ISSUE-02 |
 | Video | https://youtube.com/shorts/Rn9ZjYZ-hEQ |
 
 ---
@@ -1444,8 +1446,9 @@ Instance hallucination là các câu trả lời như “thêm keo vào pizza”
 | Dữ liệu đầu vào | Bếp vừa hoạt động trong vài phút |
 | Các bước thực hiện | 1. Cho bếp hoạt động ở mức trung bình/cao trong thời gian ngắn. 2. Tắt bếp. 3. Lắng nghe/quan sát quạt tản nhiệt. |
 | Kết quả mong đợi | Quạt có thể tiếp tục chạy một thời gian để làm mát, sau đó dừng |
-| Kết quả thực tế | Sau khi tắt bếp, quạt tản nhiệt tiếp tục chạy trong một thời gian ngắn để làm mát rồi dừng lại |
-| Kết luận | Đạt |
+| Kết quả thực tế | Sau khi tắt bếp, quạt tản nhiệt vẫn chạy khá lâu. Âm thanh không quá lớn nhưng dễ gây khó chịu nếu dùng trong phòng nhỏ hoặc lúc cần không gian yên tĩnh. |
+| Kết luận | Không đạt |
+| Issue liên quan | ISSUE-03 |
 | Video | Nên quay |
 
 ---
@@ -1464,18 +1467,18 @@ Instance hallucination là các câu trả lời như “thêm keo vào pizza”
 
 ---
 
-### TC13 - Edge case: Đặt nồi rất nhỏ
+### TC13 - Boiling Water Test
 
 | Mục | Nội dung |
 | --- | --- |
-| Mục tiêu | Kiểm tra bếp khi dùng nồi nhỏ hơn nhiều so với vùng nấu 20 cm |
-| Dữ liệu đầu vào | Nồi/chảo đáy phẳng nhỏ, đặt đúng giữa vùng nấu |
-| Các bước thực hiện | 1. Đặt nồi nhỏ lên vùng nấu. 2. Bật bếp ở mức thấp/trung bình. 3. Quan sát độ ổn định và vùng nhiệt. |
-| Kết quả mong đợi | Bếp vẫn hoạt động, nhưng nhiệt có thể phân bố không tối ưu; không được báo lỗi sai hoặc tự tắt bất thường |
-| Kết quả thực tế | Khi dùng nồi nhỏ, bếp vẫn hoạt động ổn định, không báo lỗi và không tự tắt bất thường; vùng nhiệt có thể không phủ đều toàn bộ đáy nồi |
-| Kết luận | Đạt |
+| Mục tiêu | Kiểm tra thời gian đun sôi nước trong điều kiện sử dụng thực tế |
+| Dữ liệu đầu vào | Nồi có lượng nước thử nghiệm cố định, đặt trên vùng nấu |
+| Các bước thực hiện | 1. Đổ cùng một lượng nước vào nồi. 2. Đặt nồi lên bếp. 3. Bật mức công suất cao. 4. Bấm giờ đến khi nước sôi rõ. |
+| Kết quả mong đợi | Nước sôi trong thời gian hợp lý, hiệu quả đun không bị giảm quá nhiều với nồi đáy phẳng phù hợp |
+| Kết quả thực tế | Thời gian đun sôi lâu hơn kỳ vọng với cùng lượng nước thử nghiệm, nhất là khi dùng nồi có đáy không thật đều. Bếp vẫn hoạt động bình thường nhưng hiệu quả sử dụng chưa tốt như mong muốn. |
+| Kết luận | Không đạt |
+| Issue liên quan | ISSUE-04 |
 | Video | Không bắt buộc |
-| Ghi chú edge case | Đây là edge case AI dễ bỏ sót vì AI thường giả định người dùng dùng nồi có kích thước chuẩn |
 
 ---
 
@@ -1494,18 +1497,18 @@ Instance hallucination là các câu trả lời như “thêm keo vào pizza”
 
 ---
 
-### TC15 - Edge case: Đặt nồi lệch nhẹ khỏi tâm
+### TC15 - Display Visibility Test
 
 | Mục | Nội dung |
 | --- | --- |
-| Mục tiêu | Kiểm tra hiệu quả nấu khi nồi đặt lệch nhẹ khỏi tâm vùng nấu |
-| Dữ liệu đầu vào | Nồi đáy phẳng đặt lệch nhẹ nhưng vẫn nằm an toàn trên mặt bếp |
-| Các bước thực hiện | 1. Đặt nồi lệch nhẹ khỏi tâm vùng nấu. 2. Bật mức nhiệt thấp/trung bình. 3. Quan sát khả năng làm nóng và độ ổn định của nồi. |
-| Kết quả mong đợi | Bếp vẫn hoạt động, nhưng hiệu quả truyền nhiệt có thể giảm; nồi không được trượt hoặc mất ổn định |
-| Kết quả thực tế | Khi đặt nồi lệch nhẹ, bếp vẫn hoạt động và làm nóng được nồi; hiệu quả truyền nhiệt có thể giảm nhẹ nhưng nồi vẫn ổn định, không bị trượt |
-| Kết luận | Đạt |
+| Mục tiêu | Kiểm tra khả năng nhìn màn hình/đèn hiển thị trong các điều kiện ánh sáng khác nhau |
+| Dữ liệu đầu vào | Bếp đang bật, khu vực kiểm thử có ánh sáng trong phòng và ánh sáng mạnh chiếu trực tiếp |
+| Các bước thực hiện | 1. Bật bếp. 2. Quan sát màn hình/đèn hiển thị ở ánh sáng bình thường. 3. Chiếu ánh sáng mạnh trực tiếp vào khu vực bảng điều khiển. 4. Quan sát lại độ rõ của hiển thị. |
+| Kết quả mong đợi | Màn hình/đèn hiển thị đủ rõ để người dùng đọc trạng thái bếp và mức công suất |
+| Kết quả thực tế | Ở ánh sáng bình thường thì màn hình/đèn hiển thị nhìn được, nhưng khi có ánh sáng mạnh chiếu trực tiếp thì khá khó nhìn. Người dùng phải đổi góc nhìn hoặc che bớt sáng mới đọc rõ hơn. |
+| Kết luận | Không đạt |
+| Issue liên quan | ISSUE-05 |
 | Video | Không bắt buộc |
-| Ghi chú edge case | AI thường bỏ sót vì AI giả định nồi luôn được đặt chính giữa vùng nấu |
 
 ---
 
@@ -1519,15 +1522,23 @@ Instance hallucination là các câu trả lời như “thêm keo vào pizza”
 | TC09 | `TC09_do_phan_hoi_bang_dieu_khien.mp4` | https://youtube.com/shorts/Rn9ZjYZ-hEQ |
 | TC14 | `TC14_nhan_nut_lien_tuc.mp4` | https://youtube.com/shorts/SF9aW7VgUGk |
 
+Trong các video đã quay, TC09 là test case không đạt nên link video được dùng làm bằng chứng cho ISSUE-02 về độ phản hồi của bảng điều khiển.
+
 ---
 
 ## 6. Nhật ký lỗi
 
-Không phát hiện lỗi trong quá trình kiểm thử thiết bị này.
+| Mã lỗi | Test case liên quan | Mô tả | Mức độ nghiêm trọng | Bằng chứng | Trạng thái | Link GitHub Issue |
+| --- | --- | --- | --- | --- | --- | --- |
+| ISSUE-01 | TC08 | Hẹn giờ có phản hồi nhưng thao tác cài đặt chưa trực quan, người dùng dễ nhầm giữa chỉnh công suất và chỉnh thời gian. | Low | Kết quả thực tế khi thao tác hẹn giờ trên thiết bị | Open | TODO: GitHub Issue #1 |
+| ISSUE-02 | TC09 | Bảng điều khiển đôi lúc phản hồi chậm khi nhấn liên tục hoặc khi tay hơi ẩm. | Medium | Video TC09: https://youtube.com/shorts/Rn9ZjYZ-hEQ | Open | TODO: GitHub Issue #2 |
+| ISSUE-03 | TC11 | Quạt tản nhiệt sau khi tắt bếp chạy khá lâu và âm thanh dễ gây khó chịu trong không gian nhỏ. | Low | Quan sát trực tiếp sau khi tắt bếp | Open | TODO: GitHub Issue #3 |
+| ISSUE-04 | TC13 | Boiling Water Test cho thấy thời gian đun sôi lâu hơn kỳ vọng ở cùng lượng nước thử nghiệm, nhất là khi dùng nồi đáy không thật đều. | Medium | Ghi nhận thời gian đun trong lúc kiểm thử | Open | TODO: GitHub Issue #4 |
+| ISSUE-05 | TC15 | Display Visibility Test cho thấy màn hình/đèn hiển thị khó nhìn khi có ánh sáng mạnh chiếu trực tiếp. | Low | Quan sát trực tiếp trong điều kiện ánh sáng mạnh | Open | TODO: GitHub Issue #5 |
 
-| Mã lỗi | Test case liên quan | Mô tả | Mức độ nghiêm trọng | Bằng chứng | Trạng thái |
-| --- | --- | --- | --- | --- | --- |
-| Không có | Không có | Không tìm thấy lỗi ở thiết bị này | Không áp dụng | Không áp dụng | Không có lỗi |
+### 6.1. Ghi chú về mức độ lỗi
+
+Các issue tìm được không phải lỗi gây mất an toàn nghiêm trọng, vì bếp vẫn bật/tắt và nấu được trong điều kiện kiểm thử tại nhà. Đây chủ yếu là các lỗi hoặc điểm yếu về usability, feedback, visibility và hiệu quả sử dụng trong điều kiện thực tế. Em vẫn ghi nhận các issue này vì Requirement 3 yêu cầu cố gắng tìm defect khi kiểm thử thiết bị thật, kể cả những lỗi mức Low/Medium.
 
 ---
 
@@ -1603,7 +1614,7 @@ AI thường giả định nồi được đặt chính giữa vùng nấu. Tuy 
 | (2) AI output | Nội dung trao đổi nằm trong `prompt-log.md`, Prompt 011–012. File `physical-product/report.md` là phần em viết lại sau khi test thiết bị thật. |
 | (3) Verdict | INCOMPLETE. |
 | (4) Reasoning | AI có thể gợi ý test case, nhưng không thể biết bếp nhà em bật có lên không, nút có phản hồi không, hay video có chứng minh được không. Actual Result và Verdict bắt buộc phải đến từ lúc em test thật. |
-| (5) Student fix | Em tự chạy 15 test case, điền Actual Result, gắn video cho TC01, TC06, TC07, TC09, TC14 và ghi defect log là không phát hiện lỗi sau khi thực thi. |
+| (5) Student fix | Em tự chạy 15 test case, điền Actual Result, gắn video cho TC01, TC06, TC07, TC09, TC14 và em ghi nhận 5 issue mức Low/Medium trong quá trình kiểm thử và log lại ở mục Nhật ký lỗi/GitHub Issues. |
 
 #### Artifact 5 – AI-missed Edge Cases for Physical Product
 
@@ -1613,7 +1624,7 @@ AI thường giả định nồi được đặt chính giữa vùng nấu. Tuy 
 | (2) AI output | Bằng chứng là các ảnh `physical-product/prompt-test-case.png` đến `physical-product/prompt-test-case-7.png`. |
 | (3) Verdict | INCOMPLETE. |
 | (4) Reasoning | AI hay giả định người dùng làm đúng sách vở: đặt nồi ngay giữa, dùng nồi vừa kích thước, bấm nút từng lần rõ ràng. Nhưng khi dùng đồ gia dụng ở nhà thì người dùng không phải lúc nào cũng thao tác chuẩn như vậy. |
-| (5) Student fix | Em thêm TC13 `Đặt nồi rất nhỏ`, TC14 `Nhấn nút liên tục`, TC15 `Đặt nồi lệch nhẹ khỏi tâm`, rồi viết giải thích riêng cho từng edge case. |
+| (5) Student fix | Em bổ sung phần edge case riêng như đặt nồi rất nhỏ, nhấn nút liên tục và đặt nồi lệch nhẹ khỏi tâm, rồi viết giải thích riêng cho từng tình huống. |
 
 #### Artifact 6 – AI Collaboration Evidence Review
 
