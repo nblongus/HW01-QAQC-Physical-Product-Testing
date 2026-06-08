@@ -10,6 +10,28 @@
 
 **Ngày thu thập thông tin:** 07/06/2026  
 
+### 0. QA/QC Role Mindmap và 3 lỗi AI cần chỉnh
+
+![QA/QC Role Mindmap](role-map/qaqc-role-mindmap-tree.png)
+
+Sau khi yêu cầu AI tạo QA/QC role mindmap, em nhận thấy mindmap ban đầu còn một số điểm chưa chính xác hoặc chưa đủ so với yêu cầu HW01.
+
+#### Lỗi 1: AI chưa tách rõ QA và QC
+
+AI gom QA và QC thành một nhóm chung là “testing”. Cách này chưa chính xác vì QA và QC có trọng tâm khác nhau. QA thiên về xây dựng quy trình, phòng ngừa lỗi, checklist, audit và cải tiến chất lượng. QC thiên về kiểm tra sản phẩm, chạy test case, ghi nhận actual result và kết luận Pass/Fail. Vì vậy, em đã tách riêng hai nhánh “QA – Quality Assurance” và “QC – Quality Control” trong mindmap cuối.
+
+#### Lỗi 2: AI tập trung quá nhiều vào software testing
+
+Mindmap ban đầu nghiêng nhiều về kiểm thử phần mềm như functional testing, regression testing, API testing và automation testing. Tuy nhiên, HW01 không chỉ yêu cầu software defects mà còn yêu cầu kiểm thử một sản phẩm vật lý thật. Vì vậy, em bổ sung nhánh “Physical Product Testing” để thể hiện các hoạt động như kiểm thử nguồn điện, sinh nhiệt, nút bấm, hẹn giờ, màn hình hiển thị và bằng chứng video.
+
+#### Lỗi 3: AI chưa nhấn mạnh defect evidence và traceability
+
+AI có nhắc đến bug/defect nhưng còn chung chung, chưa thể hiện rõ defect phải đi kèm bằng chứng. Trong HW01, defect cần liên kết với test case, actual result, severity, video/screenshot và GitHub Issue. Vì vậy, em bổ sung nhánh “Defect Management” để thể hiện traceability: test case → actual result → defect/issue → bằng chứng → trạng thái xử lý.
+
+#### Kết luận chỉnh sửa
+
+Bản mindmap cuối cùng đã được chỉnh để sát hơn với yêu cầu HW01: phân biệt QA/QC, có kiểm thử sản phẩm vật lý, có AI-assisted QA, có defect management và có phần chỉ ra các điểm AI bỏ sót.
+
 ### 1. Bảng tổng hợp các tin tuyển dụng
 
 | STT | Vị trí | Công ty | Nền tảng | Mức lương | Yêu cầu AI/LLM |
